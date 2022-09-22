@@ -1,0 +1,22 @@
+<p>parent works!</p>
+<hr>
+<table>
+    <thead>
+        <th>Sr no</th>
+        <th> id</th>
+        <th>name</th>
+        <th>department</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of stuobj;index as i">
+            <td> {{i+1}} </td>
+            <td> {{item.id}} </td>
+            <td> {{item.name}} </td>
+            <td> {{item.dept}} </td>
+        </tr>
+    </tbody>
+</table>
+
+<app-child1 [parentstrdata]="parentstr" 
+    [parentarrdata]="stuobj"
+></app-child1>

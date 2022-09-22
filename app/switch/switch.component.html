@@ -1,0 +1,20 @@
+<p>switch works!</p>
+<input  #inputcolor type="text" placeholder="Enter the color name "> <br><br>
+<button (click)="onSend(inputcolor.value)" >Send</button>
+<hr>
+<div [ngSwitch]="choice">
+  <div *ngSwitchCase="'red'"
+    [style.background]="choice"          
+  >Your color name is {{choice}} </div>
+ 
+  <div *ngSwitchCase="'green'"
+  [style.background]="choice">Your color name is {{choice}} </div>
+  
+  <div *ngSwitchCase="'skyblue'"
+  [style.background]="choice">Your color name is {{choice}} </div>
+ 
+  <div *ngSwitchDefault
+      [ngstyle ="{' background-color:choice==''?'black':'orange'}"]
+      [ngstyle = "{'color :choice==''?'white':'black'}"]
+  >Your color name is wrong {{choice}} </div>
+</div>
