@@ -21,17 +21,14 @@ public class Empcontroller {
 		return"Start";
 	}
 
+	@PostMapping("addEmp")
+	public Employee addEmp(@RequestBody Employee employee) {
+		return service.save(employee);
+	}
+	
 	@GetMapping("getEmp")
 	public List<Employee> findAllEmp(){
 		return service.getEmp();
 	}
 
-//	
-//	@GetMapping("/employee")
-//	
-//	public String listAll(Employee employee) {
-//		List<Employee> listEmployee = emp.findAll();
-//		//employee.add
-//		return 
-//	}
 }
