@@ -6,10 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'project';
+  title = 'fxtrading';
 
-
-  ngOnInit(){
-    document.body.className="bg_background";
+  onclick(){
+    
   }
 }
