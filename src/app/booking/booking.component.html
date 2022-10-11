@@ -1,23 +1,187 @@
- <div  class ="conatiner">
+ <!-- <div  class ="conatiner">
+
+   <div class="row">
+    <div class="col">
+      <div class ="bookform">
+        <div class="main-div">
+
+        <div class="panel">
+        <h1>Book</h1>
+        <hr>
+        <p class="text-success" 
+          style="font-weight: bold; color:yellowgreen;">
+          Please Enter Booking Information</p>                
+        </div>
+    <form #f="ngForm" (ngBook)="Book(f)">
+
+        <div class="form-group">
+          
+          <div class="input-group-prepend">
+             <span
+                class="input-group-text"
+                style="font-size: 25px;margin-right: 15px; color: red">
+                <i class="fa fa-user"></i>
+          </span>
+                <input #name="ngModel" 
+                 ngModel type="name" 
+                name="name" class="form-control" 
+                placeholder="Enter your name" >
+            </div>
+
+            <div class="alert alert-danger" 
+            *ngIf="name.touched &&!name.valid"> Please Enter the Name
+          
+              <div class="alert alert-danger" 
+              *ngIf="name.errors?.pattern"> Appropriate Name is required
+
+              </div>
+          </div>
+      </div>
+    
+
+      
+      <div class="form-group">
+        <div class="input-group-prepend">
+            <span
+            class="input-group-text"
+            style="font-size: 25px;margin-right: 10px; color: red"
+          >
+            <i class="fa fa-exchange"></i>
+          </span>
+        <input #currencypair="ngModel" 
+        ngModel type="currencypair"
+         name="currencypair" class="form-control" 
+         id="currencypair" placeholder="Enter currency pair" >
+        
+        </div>
 
 
-Name:
-<input #inputname1 type = "text" placeholder="Enter your name"><br><br>
-
-Currency Pair:
-<input #inputpair  type =" text" placeholder="Enter currency pair"><br><br>
-
-Amount:
-<input #inputamount  type =" number" placeholder="Enter amount"><br><br>
-
-Rate:
- <br><input type="radio" name="Select" value="yes" (click) = "onyes()">Yes <br>
- <input type="radio" name="Select" value="no" (click) = "onno()" > No <br>
+    </div>
 
 
+    <div class="form-group">
+      <div class="input-group-prepend">
+          <span
+          class="input-group-text"
+          style="font-size: 25px;margin-right: 10px; color: red"
+        >
+          <i class="fa fa-money"></i>
+        </span>
+      <input #amount="ngModel" 
+      ngModel type="amount"
+       name="amount" class="form-control" 
+       id="amount" placeholder="Enter amount" >
+      
+      </div>
 
+      <div class="alert alert-danger" 
+      *ngIf="amount.touched &&!amount.valid"> Enter amount
 
-</div>
+      </div>
 
+     </div>
+     <br>
+
+    
+
+            <label style= "color: white; " for="">Do you want to Get Rate:</label><br>
+            <div style="color: white">
+              <input type="radio"  name="Select" value="yes"  (click) = "onyes()">Yes<br>
+              <input type="radio" name="Select" value="no" (click) = "onno()">No<br>
+            </div>
+            <br>
+            
+            <br>
+            <button [disabled]="!f.valid" value="book" class="btn btn-success">BOOK</button> &nbsp;     
+          
+          <button (click)="onCancel()" [disabled]="!f.valid" value="cancel"  class="btn btn-outline-danger">Cancel</button><br> <br>
+          <button (click)="onBack()"  class="btn btn-success">Back</button>
+          <br>
+           <span style="color: rgb(3, 3, 60);font-weight:bold;margin-top:5px;">{{getrate}}</span>
+          <br>
+          <br><span style="color:rgb(2, 2, 38); margin-top:5px;">{{responsemsg}}</span> 
+  
+        </form>
+
+    </div>
+    </div>
+    </div>
+  </div>
+</div> -->
  
   
+
+<div class="clr" style="font-weight: bold;">
+  <div class="container"  >
+    <div class="row ">
+      <div class="col-4" style="margin-top: 3cm;  margin-left: 3cm;">
+  
+          <form #f="ngForm" (ngSubmit)="onBook(f)">
+  
+            <div class="form-group">
+                  <label for="">CustomerName</label>
+                  <input type="text" class="form-control" 
+                  minlength="4"  pattern="^[a-zA-Z .]+" 
+                  ngModel name="customername" #customername="ngModel" ngModel id="name"required
+                  
+                  placeholder="Enter the Customername">
+  
+                <div *ngIf="customername.touched && !customername.valid"
+                class="alert alert-danger">
+                  ** Please enter the customer name ....
+  
+                  <div *ngIf="customername.errors?.minlength">
+                      ** Please enter the minimum length of customer name is {{customername.errors?.minlength.requiredLength}}
+                  </div>
+                </div>
+            </div>
+  
+  
+  
+            <div class="form-group">
+              <label for="currencypair">CurrencyPair</label>
+              <select ngModel name="currencypair" 
+              id="currencypair" class="form-control"  required>  
+               <option *ngFor="let item of currencypair" 
+               [ngValue]="item">{{item.currencypair}} </option>
+              </select> 
+            </div>
+  
+  
+            <div class="form-group">
+                <label for="">Amount:</label>
+                <input type="number"  class="form-control" 
+                  ngModel name="amount" #amount="ngModel" ngModel id="amount" required
+                  placeholder="Enter the amount">
+  
+  
+                 <div *ngIf="amount.touched && amount.invalid"
+                 class="alert alert-danger">
+                    ** Please Enter the amount...
+                 </div>
+            </div>
+            
+       
+            <!-- <label for="">Do you want to get rate:</label>
+            <mat-radio-group #rate="ngModel" ngModel required name ="rate" (change)="onChange($event)"><br>
+            <mat-radio-button value="1">Yes</mat-radio-button> &nbsp;
+            <mat-radio-button value="2">No</mat-radio-button>
+            </mat-radio-group> -->
+    
+  
+            <br><br>
+            <button [disabled]="!f.valid" value="book" class="btn btn-success">BOOK</button> &nbsp;     
+          </form><br>
+          <button (click)="onCancel()" [disabled]="!f.valid" value="cancel"  class="btn btn-outline-danger">Cancel</button> &nbsp;
+          <button (click)="onBack()"  class="btn btn-success">Back</button>
+          <br><br>
+          <span style="color: rgb(3, 3, 60);font-weight:bold;margin-top:5px;">{{ratemsg}}</span>
+          <br>
+          <br><span style="color:rgb(2, 2, 38); margin-top:5px;">{{responsemsg}}</span>
+  
+  
+      </div>
+    </div>
+  </div>
+  
+  </div>
